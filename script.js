@@ -1,6 +1,61 @@
 // JavaScript for interactive functionality
 
 document.addEventListener('DOMContentLoaded', function() {
+    // Mobile Hamburger Menu Functionality
+    const hamburgerMenu = document.querySelector('.hamburger-menu');
+    const mobileHamburgerMenu = document.querySelector('.mobile-hamburger');
+    const navigation = document.querySelector('.navigation');
+    const body = document.body;
+    
+    if (hamburgerMenu && navigation) {
+        hamburgerMenu.addEventListener('click', function() {
+            this.classList.toggle('active');
+            navigation.classList.toggle('active');
+            if (navigation.classList.contains('active')) {
+                body.style.overflow = 'hidden'; // Lock body scroll
+            } else {
+                body.style.overflow = ''; // Restore body scroll
+            }
+        });
+        
+        // Mobile hamburger menu inside navigation (close functionality)
+        if (mobileHamburgerMenu) {
+            mobileHamburgerMenu.addEventListener('click', function() {
+                hamburgerMenu.classList.remove('active');
+                navigation.classList.remove('active');
+                body.style.overflow = '';
+            });
+        }
+        
+        // Close menu when clicking on a menu link
+        const menuLinks = document.querySelectorAll('.menu-link');
+        menuLinks.forEach(link => {
+            link.addEventListener('click', function() {
+                hamburgerMenu.classList.remove('active');
+                navigation.classList.remove('active');
+                body.style.overflow = '';
+            });
+        });
+        
+        // Close menu when clicking outside
+        document.addEventListener('click', function(e) {
+            if (!hamburgerMenu.contains(e.target) && !navigation.contains(e.target)) {
+                hamburgerMenu.classList.remove('active');
+                navigation.classList.remove('active');
+                body.style.overflow = '';
+            }
+        });
+        
+        // Close menu on window resize (if screen becomes larger)
+        window.addEventListener('resize', function() {
+            if (window.innerWidth > 767) { // Mobile breakpoint
+                hamburgerMenu.classList.remove('active');
+                navigation.classList.remove('active');
+                body.style.overflow = '';
+            }
+        });
+    }
+
     // Add smooth scrolling for navigation links
     const navLinks = document.querySelectorAll('.menu-link');
     

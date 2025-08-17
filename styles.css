@@ -66,15 +66,18 @@ body {
 }
 
 .hamburger-menu {
-    display: flex;
+    display: flex; /* Show hamburger menu on desktop */
     flex-direction: column;
     gap: 4px;
-    cursor: pointer;
+    cursor: default; /* Not clickable on desktop */
     margin-right: 20px;
+    z-index: 1001;
+    pointer-events: none; /* Disable click events on desktop */
 }
 
 .hamburger-line {
     width: 24px;
+    gap: 4px;
     height: 2px;
     background-color: #ffffff;
     transition: all 0.3s ease;
@@ -115,7 +118,7 @@ body {
 }
 
 .logo-container:hover .logo-background {
-    transform: rotate(180deg);
+    transform: rotate(90deg);
 }
 
 /* Navigation Styles */
@@ -123,6 +126,15 @@ body {
     display: flex;
     align-items: center;
     gap: 60px;
+}
+
+/* Hide mobile elements on desktop */
+.mobile-hamburger {
+    display: none;
+}
+
+.mobile-logo {
+    display: none;
 }
 
 .menu-items {
@@ -134,7 +146,7 @@ body {
 .menu-item {
     display: flex;
     flex-direction: column;
-    align-items: center;
+    
     gap: 10px;
 }
 
@@ -663,13 +675,26 @@ body {
     height: 32px;
     margin: 60px 0;
     display: flex;
-    justify-content: center;
+    align-items: center;
+    gap: 26px;
 }
 
-.section-divider img {
-    width: 100%;
-    height: 100%;
-    object-fit: contain;
+.section-divider .divider-line {
+    flex: 1;
+    height: 6px;
+    background-color: #FFF;
+}
+
+.section-divider .divider-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transform: rotate(90deg) scaleY(-1);
+}
+
+.section-divider .divider-icon img {
+    width: 18px;
+    height: 18px;
 }
 
 /* Filter Bar */
@@ -808,7 +833,7 @@ body {
 }
 
 .pagination-btn.next img {
-    transform: rotate(180deg);
+    transform: scaleX(-1);
 }
 
 /* Charities Section */
@@ -1206,54 +1231,49 @@ body {
 
 .building-tomorrow-image {
     position: absolute;
+    bottom: 0;
+    right: 0;
+    width: 50%;
+    height: 100%;
     z-index: 1;
+    overflow: hidden;
 }
 
 .city-image {
-    position: absolute;
-    left: 734px;
-    top: 91.5px;
-    width: 1033.75px;
-    height: 1033.77px;
-}
-
-.city-image img {
-    width: 100%;
-    height: 100%;
-    object-fit: contain;
+    display: none;
 }
 
 .wavy-pattern {
     position: absolute;
-    left: 750.25px;
-    top: 84px;
-    width: 1053.75px;
-    height: 1048.75px;
-    z-index: 2;
+    bottom: 0;
+    right: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
 }
 
 .wavy-pattern img {
     width: 100%;
     height: 100%;
     object-fit: contain;
+    object-position: bottom right;
 }
 
 /* Disclaimer Section */
 .disclaimer-section {
-    width: 90%;
-    max-width: 1620px;
+    width: 80%;
     margin: 80px auto 0;
     padding: 0 5%;
 }
 
 .disclaimer-content {
-    width: 1545px;
+    width: 100%;
     margin: 0 auto;
 }
 
 .disclaimer-content p {
     font-family: 'Open Sans', sans-serif;
-    font-size: 18px;
+    font-size: 14px;
     font-weight: 400;
     color: #9d9d9d;
     line-height: 1.7;
@@ -1420,15 +1440,18 @@ body {
 }
 
 .footer-divider {
-    width: 100%;
+    width: 100vw;
     height: 1px;
     margin: 20px 0;
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%);
 }
 
-.footer-divider img {
+.footer-divider .divider-line {
     width: 100%;
     height: 100%;
-    object-fit: cover;
+    background-color: #FFF;
 }
 
 .footer-bottom {
@@ -1479,4 +1502,965 @@ body {
 .footer-credit a {
     color: #eae7e2;
     text-decoration: underline;
+}
+
+/* ========================================
+   RESPONSIVE DESIGN
+   ======================================== */
+
+/* Tablet Breakpoint (768px - 1024px) */
+@media (max-width: 1024px) {
+    .header {
+        width: 100%;
+        left: 0;
+        transform: none;
+        padding: 20px 40px;
+    }
+    
+    .logo-container {
+        width: 100px;
+        height: 100px;
+    }
+    
+    .logo-background {
+        width: 120px;
+        height: 120px;
+    }
+    
+    .navigation {
+        gap: 40px;
+    }
+    
+    .menu-items {
+        gap: 15px;
+    }
+    
+    .menu-link {
+        font-size: 14px;
+        padding: 8px 12px;
+    }
+    
+    .cta-button {
+        padding: 8px 16px;
+    }
+    
+    .cta-link {
+        font-size: 16px;
+    }
+    
+    .hero {
+        height: 800px;
+    }
+    
+    .hero-heading h1 {
+        font-size: 48px;
+        line-height: 1.2;
+    }
+    
+    .feature-section {
+        width: 90%;
+        gap: 10px;
+    }
+    
+    .feature-card {
+        padding: 20px;
+        height: 180px;
+    }
+    
+    .card-title {
+        font-size: 24px;
+    }
+    
+    .card-description {
+        font-size: 14px;
+    }
+    
+    /* Adjust all sections for tablet */
+    .intro-section,
+    .better-living-section,
+    .company-description-section,
+    .projects-section,
+    .charities-section,
+    .team-section,
+    .building-tomorrow-section,
+    .disclaimer-section {
+        width: 90%;
+        padding: 0 5%;
+    }
+    
+    .intro-heading,
+    .family-heading h2,
+    .charities-title h2,
+    .team-title h2,
+    .building-tomorrow-content h2 {
+        font-size: 42px;
+    }
+    
+    .better-living-container {
+        height: 500px;
+    }
+    
+    .grid-item.top-left h2,
+    .grid-item.bottom-right h2 {
+        font-size: 42px;
+    }
+    
+    .project-cards {
+        flex-direction: column;
+        gap: 20px;
+    }
+    
+    .project-card {
+        max-width: 600px;
+        margin: 0 auto;
+    }
+    
+    .team-carousel {
+        gap: 20px;
+    }
+    
+    .team-member {
+        width: 400px;
+        height: 500px;
+        padding: 40px;
+    }
+    
+    .member-image {
+        width: 280px;
+        height: 280px;
+    }
+    
+    .member-info h3 {
+        font-size: 28px;
+    }
+    
+    .footer-main {
+        flex-direction: column;
+        gap: 40px;
+        text-align: center;
+    }
+    
+    .footer-left {
+        flex-direction: column;
+    }
+}
+
+/* Mobile Breakpoint (up to 767px) */
+@media (max-width: 767px) {
+    .header {
+        padding: 15px 20px;
+        background: rgba(35, 48, 99, 0.95);
+        backdrop-filter: blur(10px);
+    }
+    
+    .hamburger-menu {
+        display: flex; /* Show hamburger menu on mobile */
+        cursor: pointer; /* Clickable on mobile */
+        pointer-events: auto; /* Enable click events on mobile */
+    }
+    
+    .navigation .mobile-hamburger {
+        position: absolute;
+        top: 40px;
+        left: 40px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 4px;
+        cursor: pointer;
+        z-index: 1001;
+    }
+    
+    .navigation .mobile-hamburger .hamburger-line {
+        width: 24px;
+        height: 2px;
+        background-color: #ffffff;
+        transition: all 0.3s ease;
+    }
+    
+    .navigation .mobile-logo {
+        position: absolute;
+        top: 40px;
+        left: 80px;
+        width: 96px;
+        height: 96px;
+        z-index: 1001;
+        display: none;
+    }
+    
+    .navigation.active .mobile-logo {
+        display: block;
+    }
+    
+    .navigation .mobile-logo img {
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+    }
+    
+    .logo-container {
+        display: none; /* Hide logo outside menu on mobile */
+    }
+    
+    .logo-background {
+        display: none; /* Hide logo outside menu on mobile */
+    }
+    
+    /* Hide desktop navigation on mobile */
+    .navigation {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100vh;
+        background: linear-gradient(135deg, #233063 0%, #1a1a1a 100%);
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: flex-start;
+        gap: 0;
+        transition: opacity 0.3s ease, visibility 0.3s ease;
+        z-index: 999;
+        padding: 60px 40px 0;
+        overflow: hidden;
+        opacity: 0;
+        visibility: hidden;
+    }
+    
+
+    
+    .navigation .logo-container {
+        display: none; /* Hide the conflicting logo container */
+    }
+    
+    .navigation .logo-background {
+        display: none;
+    }
+    
+    .navigation .logo-foreground {
+        display: none; /* Hide the conflicting logo foreground */
+    }
+    
+    .navigation.active {
+        opacity: 1;
+        visibility: visible;
+    }
+    
+    /* Mobile Menu Background with Wavy Pattern */
+    .navigation::before {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        right: 0;
+        width: 80%;
+        height: 320px;
+        background-image: url('assets/images/menuMobile.png');
+        background-size: 100% 100%;
+        background-position: center bottom;
+        background-repeat: no-repeat;
+        z-index: -1;
+        opacity: 0.8;
+    }
+    
+    .menu-items {
+        display: inline-flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: flex-start;
+        gap: 9px;
+        margin-top: 120px;
+        margin-bottom: 80px;
+        width: 100%;
+        max-width: 350px;
+    }
+    
+    .menu-item {
+        flex-direction: column;
+        gap: 15px;
+        width: 100%;
+        text-align: left;
+    }
+    
+    .menu-link {
+        padding: 10px 15px;
+        color: #ffffff;
+        text-decoration: none;
+        font-weight: 600;
+        font-size: 16px;
+        line-height: 20px;
+        white-space: nowrap;
+        transition: color 0.3s ease;
+    }
+    
+    .menu-link:hover {
+        color: #68b3ff;
+        transform: translateX(10px);
+    }
+    
+    .menu-indicator {
+        height: 3px;
+        background-color: #68b3ff;
+        width: 0;
+        transition: width 0.3s ease;
+        margin: 0 auto;
+    }
+    
+    .menu-item:hover .menu-indicator {
+        width: 60px;
+    }
+    
+    .cta-button {
+        display: none; /* Hide CTA button in mobile menu */
+    }
+    
+    .cta-link {
+        display: none; /* Hide CTA link in mobile menu */
+    }
+    
+    /* Hamburger menu animation */
+    .hamburger-menu.active .hamburger-line:nth-child(1) {
+        transform: rotate(45deg) translate(5px, 5px);
+        display: none;
+    }
+    
+    .hamburger-menu.active .hamburger-line:nth-child(2) {
+        opacity: 0;
+    }
+    
+    .hamburger-menu.active .hamburger-line:nth-child(3) {
+        transform: rotate(-45deg) translate(7px, -6px);
+        display: none;
+    }
+    
+    /* Hero Section - Stack feature cards vertically */
+    .hero {
+        height: auto;
+        min-height: 100vh;
+        padding: 100px 20px 40px;
+    }
+    
+    .hero-heading h1 {
+        font-size: 36px;
+        line-height: 1.1;
+        padding: 0 10px;
+        margin-bottom: 40px;
+        font-family: 'Wittgenstein', 'Times New Roman', serif;
+        font-weight: 400;
+        color: #EAE7E2;
+        text-align: center;
+        text-transform: uppercase;
+        letter-spacing: 0.8px;
+    }
+    
+    .hero-heading .heading-regular,
+    .hero-heading .heading-bold {
+        font-family: 'Wittgenstein', 'Times New Roman', serif;
+        font-weight: 400;
+        font-size: 36px;
+        line-height: 1.1;
+        letter-spacing: 0.8px;
+    }
+    
+    .feature-section {
+        position: relative;
+        bottom: auto;
+        left: auto;
+        transform: none;
+        width: 100%;
+        flex-direction: column;
+        gap: 15px;
+        margin-top: 30px;
+        padding: 0 15px;
+    }
+    
+    .feature-card {
+        height: auto;
+        min-height: 100px;
+        padding: 20px;
+        width: 100%;
+        max-width: 350px;
+        margin: 0 auto;
+    }
+    
+    .card-title {
+        font-size: 20px;
+    }
+    
+    .card-description {
+        font-size: 14px;
+    }
+    
+    /* Intro Section - Stack content vertically */
+    .intro-section {
+        width: 100%;
+        padding: 40px 20px;
+        margin: 40px auto 0;
+        flex-direction: column;
+        gap: 30px;
+        text-align: center;
+    }
+    
+    .intro-heading {
+        font-size: 32px;
+    }
+    
+    .intro-description {
+        font-size: 18px;
+        max-width: 100%;
+    }
+    
+    .view-projects-btn {
+        font-size: 28px;
+        gap: 15px;
+        justify-content: center;
+        margin: 0 auto;
+    }
+    
+    .arrow-icon {
+        width: 45px;
+        height: 45px;
+    }
+    
+    /* Better Living Section - Prevent horizontal scroll */
+    .better-living-section {
+        width: 100%;
+        padding: 0 20px;
+        margin: 40px auto 0;
+        overflow: hidden;
+    }
+    
+    .better-living-container {
+        height: 400px;
+        width: 100%;
+        max-width: 100%;
+    }
+    
+    .better-living-grid {
+        grid-template-columns: 1fr;
+        grid-template-rows: repeat(4, 1fr);
+    }
+    
+    .grid-item.top-left {
+        grid-column: 1;
+        grid-row: 1;
+    }
+    
+    .grid-item.top-right {
+        grid-column: 1;
+        grid-row: 2;
+        border-top-right-radius: 0;
+    }
+    
+    .grid-item.bottom-left {
+        grid-column: 1;
+        grid-row: 3;
+        border-bottom-left-radius: 0;
+    }
+    
+    .grid-item.bottom-right {
+        grid-column: 1;
+        grid-row: 4;
+    }
+    
+    .grid-item.top-left h2,
+    .grid-item.bottom-right h2 {
+        font-size: 28px;
+    }
+    
+    /* Company Description Section */
+    .company-description-section {
+        width: 100%;
+        padding: 0 20px;
+        margin: 40px auto 0;
+    }
+    
+    .company-description {
+        flex-direction: column;
+        gap: 30px;
+    }
+    
+    .family-heading h2 {
+        font-size: 32px;
+        text-align: center;
+    }
+    
+    /* Projects Section - Stack everything vertically */
+    .projects-section {
+        width: 100%;
+        padding: 0 20px;
+        margin: 40px auto 0;
+    }
+    
+    .filter-bar {
+        width: 100%;
+        flex-direction: column;
+        gap: 15px;
+        margin-bottom: 40px;
+    }
+    
+    .filter-btn {
+        width: 100%;
+        min-width: auto;
+        padding: 15px 20px;
+        font-size: 16px;
+    }
+    
+    .project-cards {
+        flex-direction: column;
+        gap: 25px;
+        align-items: center;
+    }
+    
+    .project-card {
+        max-width: 100%;
+        width: 100%;
+    }
+    
+    .project-info {
+        padding: 25px;
+    }
+    
+    .project-info h3 {
+        font-size: 28px;
+    }
+    
+    .project-arrow {
+        width: 45px;
+        height: 45px;
+    }
+    
+    .pagination {
+        justify-content: center;
+        padding-right: 0;
+        margin-top: 30px;
+    }
+    
+    /* Charities Section - Keep same but smaller */
+    .charities-section {
+        width: 100%;
+        padding: 0 20px;
+        margin: 40px auto 0;
+    }
+    
+    .charities-title h2 {
+        font-size: 32px;
+        text-align: center;
+    }
+    
+    .charities-carousel-container {
+        width: 100%;
+        margin-left: 0;
+    }
+    
+    .charities-carousel {
+        gap: 40px;
+    }
+    
+    /* Team Section - Keep same but smaller */
+    .team-section {
+        width: 100%;
+        padding: 0 20px;
+        margin: 40px auto 0;
+    }
+    
+    .team-title h2 {
+        font-size: 32px;
+        text-align: center;
+    }
+    
+    .team-carousel-container {
+        width: 100%;
+        margin-left: 0;
+    }
+    
+    .team-carousel {
+        gap: 20px;
+    }
+    
+    .team-member {
+        width: 300px;
+        height: 400px;
+        padding: 25px;
+    }
+    
+    .member-image {
+        width: 220px;
+        height: 220px;
+        margin-bottom: 25px;
+    }
+    
+    .member-info {
+        width: 100%;
+    }
+    
+    .member-info h3 {
+        font-size: 24px;
+    }
+    
+    .member-info p {
+        font-size: 14px;
+    }
+    
+    /* Building for Tomorrow Section - Stack vertically */
+    .building-tomorrow-section {
+        width: 100%;
+        padding: 0 20px;
+        margin: 40px auto 0;
+    }
+    
+    .building-tomorrow-card {
+        height: auto;
+        min-height: 600px;
+        flex-direction: column;
+        padding: 40px 20px;
+    }
+    
+    .building-tomorrow-content {
+        position: relative;
+        left: auto;
+        top: auto;
+        width: 100%;
+        padding: 0;
+        gap: 30px;
+        text-align: center;
+        order: 1;
+    }
+    
+    .building-tomorrow-content h2 {
+        font-size: 32px;
+        height: auto;
+    }
+    
+    .building-tomorrow-content p {
+        font-size: 18px;
+        width: 100%;
+    }
+    
+    .get-in-touch-btn {
+        font-size: 18px;
+        padding: 15px 30px;
+        margin: 0 auto;
+    }
+    
+    .building-tomorrow-image {
+        position: relative;
+        height: 300px;
+        margin-top: 30px;
+        order: 2;
+        width: 100%;
+    }
+    
+    .city-image,
+    .wavy-pattern {
+        position: relative;
+        width: 100%;
+        height: 100%;
+    }
+    
+    /* Disclaimer Section */
+    .disclaimer-section {
+        width: 100%;
+        padding: 0 20px;
+        margin: 40px auto 0;
+    }
+    
+    .disclaimer-content {
+        width: 100%;
+    }
+    
+    .disclaimer-content p {
+        font-size: 16px;
+        text-align: center;
+    }
+    
+    /* Footer - Stack everything vertically and center */
+    .footer {
+        border-radius: 30px 30px 0 0;
+        padding: 20px 0;
+    }
+    
+    .footer-content {
+        padding: 30px 0;
+    }
+    
+    .footer-main {
+        flex-direction: column;
+        gap: 40px;
+        text-align: center;
+        align-items: center;
+    }
+    
+    .footer-left {
+        flex-direction: column;
+        align-items: center;
+        gap: 25px;
+    }
+    
+    .service-icon {
+        width: 120px;
+        height: 120px;
+    }
+    
+    .contact-info {
+        text-align: center;
+    }
+    
+    .contact-info p {
+        font-size: 16px;
+        width: 100%;
+        text-align: center;
+    }
+    
+    .social-media {
+        gap: 20px;
+        justify-content: center;
+    }
+    
+    .social-icon {
+        width: 40px;
+        height: 40px;
+        padding: 6px;
+    }
+    
+    .footer-center,
+    .footer-right {
+        width: 100%;
+        text-align: center;
+    }
+    
+    .footer-center h3,
+    .footer-right h3 {
+        font-size: 18px;
+        margin-bottom: 15px;
+    }
+    
+    .footer-center ul {
+        align-items: center;
+    }
+    
+    .footer-center a,
+    .footer-right p {
+        font-size: 16px;
+        text-align: center;
+    }
+    
+    .footer-right .contact-details {
+        align-items: center;
+        gap: 15px;
+    }
+    
+    .footer-bottom {
+        flex-direction: column;
+        gap: 25px;
+        text-align: center;
+        align-items: center;
+    }
+    
+    .footer-info {
+        flex-direction: column;
+        gap: 20px;
+        align-items: center;
+    }
+    
+    .footer-links {
+        gap: 25px;
+        justify-content: center;
+    }
+    
+    .footer-info span,
+    .footer-links a,
+    .footer-credit {
+        font-size: 14px;
+        text-align: center;
+    }
+}
+
+/* Small Mobile Breakpoint (up to 480px) */
+@media (max-width: 480px) {
+    .header {
+        padding: 10px 15px;
+    }
+    
+    .logo-container {
+        width: 60px;
+        height: 60px;
+    }
+    
+    .logo-background {
+        width: 80px;
+        height: 80px;
+    }
+    
+    .hero-heading h1 {
+        font-size: 20px;
+    }
+    
+    .feature-card {
+        padding: 15px;
+        min-height: 80px;
+    }
+    
+    .card-title {
+        font-size: 18px;
+    }
+    
+    .card-description {
+        font-size: 12px;
+    }
+    
+    .intro-heading,
+    .family-heading h2,
+    .charities-title h2,
+    .team-title h2,
+    .building-tomorrow-content h2 {
+        font-size: 28px;
+    }
+    
+    .intro-description {
+        font-size: 16px;
+    }
+    
+    .view-projects-btn {
+        font-size: 24px;
+    }
+    
+    .arrow-icon {
+        width: 40px;
+        height: 40px;
+    }
+    
+    .grid-item.top-left h2,
+    .grid-item.bottom-right h2 {
+        font-size: 24px;
+    }
+    
+    .filter-btn {
+        padding: 12px 15px;
+        font-size: 14px;
+    }
+    
+    .project-info h3 {
+        font-size: 24px;
+    }
+    
+    .team-member {
+        width: 280px;
+        height: 380px;
+        padding: 20px;
+    }
+    
+    .member-image {
+        width: 200px;
+        height: 200px;
+    }
+    
+    .member-info h3 {
+        font-size: 20px;
+    }
+    
+    .member-info p {
+        font-size: 12px;
+    }
+    
+    .building-tomorrow-content h2 {
+        font-size: 28px;
+    }
+    
+    .building-tomorrow-content p {
+        font-size: 16px;
+    }
+    
+    .get-in-touch-btn {
+        font-size: 16px;
+        padding: 12px 25px;
+    }
+    
+    .disclaimer-content p {
+        font-size: 14px;
+    }
+    
+    .service-icon {
+        width: 100px;
+        height: 100px;
+    }
+    
+    .contact-info p {
+        font-size: 14px;
+    }
+    
+    .social-icon {
+        width: 35px;
+        height: 35px;
+        padding: 5px;
+    }
+    
+    .footer-center h3,
+    .footer-right h3 {
+        font-size: 16px;
+    }
+    
+    .footer-center a,
+    .footer-right p {
+        font-size: 14px;
+    }
+    
+    .footer-info span,
+    .footer-links a,
+    .footer-credit {
+        font-size: 12px;
+    }
+    
+    .menu-link {
+        font-size: 28px;
+        padding: 15px 20px;
+    }
+    
+    .cta-button {
+        padding: 15px 35px;
+    }
+    
+    .cta-link {
+        font-size: 20px;
+    }
+}
+
+/* Landscape Mobile (height less than 600px) */
+@media (max-height: 600px) and (orientation: landscape) {
+    .hero {
+        height: 100vh;
+        padding: 80px 20px 40px;
+    }
+    
+    .feature-section {
+        margin-top: 20px;
+        gap: 15px;
+    }
+    
+    .feature-card {
+        padding: 15px;
+        min-height: 80px;
+    }
+    
+    .navigation {
+        padding: 60px 20px 0;
+    }
+    
+    .menu-items {
+        gap: 30px;
+        margin-bottom: 40px;
+    }
+    
+    .menu-link {
+        font-size: 24px;
+        padding: 15px 20px;
+    }
+    
+    .cta-button {
+        margin-top: 20px;
+        padding: 10px 25px;
+    }
+    
+    .cta-link {
+        font-size: 16px;
+    }
 }
