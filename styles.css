@@ -1509,7 +1509,7 @@ body {
    ======================================== */
 
 /* Tablet Breakpoint (768px - 1024px) */
-@media (max-width: 1024px) {
+@media (max-width: 1025px) {
     .header {
         width: 100%;
         left: 0;
@@ -1646,11 +1646,17 @@ body {
 }
 
 /* Mobile Breakpoint (up to 767px) */
-@media (max-width: 767px) {
+@media (max-width: 769px) {
     .header {
         padding: 15px 20px;
         background: rgba(35, 48, 99, 0.95);
         backdrop-filter: blur(10px);
+    }
+
+    .hero-background img {
+        width: 100%;
+        height: 80%;
+        object-fit: cover;
     }
     
     .hamburger-menu {
@@ -1752,8 +1758,8 @@ body {
         position: absolute;
         bottom: 0;
         right: 0;
-        width: 80%;
-        height: 320px;
+        width: 366px;
+        height: 317px;
         background-image: url('assets/images/menuMobile.png');
         background-size: 100% 100%;
         background-position: center bottom;
@@ -1924,7 +1930,7 @@ body {
     /* Better Living Section - Prevent horizontal scroll */
     .better-living-section {
         width: 100%;
-        padding: 0 20px;
+        padding: 0 0px;
         margin: 40px auto 0;
         overflow: hidden;
     }
@@ -2112,7 +2118,7 @@ body {
         height: auto;
         min-height: 600px;
         flex-direction: column;
-        padding: 40px 20px;
+        padding: 40px 0px 0px 0px;
     }
     
     .building-tomorrow-content {
@@ -2188,6 +2194,7 @@ body {
         gap: 40px;
         text-align: center;
         align-items: center;
+        margin-bottom: 0px;
     }
     
     .footer-left {
